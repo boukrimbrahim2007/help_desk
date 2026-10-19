@@ -4,10 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Help Desk</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
+    <header>
+        <div class="first"><div class="H">H</div>
+        <p class="logo">HelpDesk </p></div>
+        <i class="fa-solid fa-bars menu"></i>
+    </header>
+    <section class="hero">
+        <h1>Gestion des demandes</h1>
+        <p>Centralisez les incidents et simplifiez le suivi de votre équipe.</p>
+    </section>
+
+    <section class="creer">
+        <form>
+            <h3>Créer une demande</h3>
+            <p>Décrivez votre problème informatique en quelques étapes.</p>
+            <div class="container first">
+                <div class="info">
+                    <label>Titre du problème *</label>
+                    <input type="text" placeholder="Connexion Wi-Fi instable" id="title">
+                </div>
+                <div class="info second">
+                    <label>Catégorie *</label>
+                    <select id="categorie">
+                        <option>Réseau</option>
+                        <option>Logiciel</option>
+                        <option>Matériel</option>
+                    </select>    
+                </div>
+                <div class="info third">
+                    <label>Priorité*</label>
+                    <select id="priorite">
+                        <option>Haute</option>
+                        <option>Normale</option>
+                        <option>Basse</option>
+                    </select>  
+                </div>
+                    <div class="info fourth">
+                        <label>Description *</label>
+                        <input type="text" placeholder="Décrivez votre problème..." id="description">
+                    </div>
+                <button type="submit"><i class="fa-solid fa-plus"></i>  Ajouter la demande</button>
+            </div>
+
+        </form>
+    </section>
+
+    <section class="complaints">
+        <div class="lined"><h3>Liste des demandes</h3> <span class="counter">demandes</span></div>
+        <div class="list">
+            
+        </div>
+    </section>
 
 
 
