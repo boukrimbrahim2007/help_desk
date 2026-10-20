@@ -32,6 +32,9 @@ header{
 .menu{
     margin-right: 1rem;
 }
+.not_mobile{
+    display: none;
+}
 .H{
     margin-left: 1rem;
     display: flex;
@@ -179,14 +182,13 @@ button{
     color: var(--graytext);
     border: none;
     width: fit-content;
-    padding: 0.1rem 0.5rem 0.1rem 0.5rem;
+    padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+    margin: 0;
 }
 .button2{
-    background-color: var(--lightred) !important;
-    color: var(--sublightred);
-    border: none;
     width: fit-content;
     padding: 0.1rem 0.5rem 0.1rem 0.5rem;
+    margin: 0;
 }
 .lower{
     display: flex;
@@ -309,6 +311,18 @@ button{
     .list{
         grid-template-columns: 1fr 1fr;
     }
+     .menu{
+        display: none;
+    margin-right: 1rem;
+    }
+    .not_mobile{
+        display: block;
+        margin-right: 6rem;
+    }
+    .not_mobile a{
+        text-decoration: none;
+        color: var(--graytext);
+    }
 }
 @media (min-width:1024px) {
     .container{
@@ -342,5 +356,18 @@ button{
     .list{
         grid-template-columns: 1fr 1fr 1fr;
     }
+    .menu{
+        display: none;
+    margin-right: 1rem;
+    }
+    .not_mobile{
+        display: block;
+        margin-right: 6rem;
+    }
+    .not_mobile a{
+        text-decoration: none;
+        color: var(--graytext);
+    }
+    
 }
 
