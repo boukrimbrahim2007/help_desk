@@ -18,13 +18,13 @@
     </header>
     <section class="hero">
         <h1>Gestion des demandes</h1>
-        <p>Centralisez les incidents et simplifiez le suivi de votre équipe.</p>
+        <p class="gray">Centralisez les incidents et simplifiez le suivi de votre équipe.</p>
     </section>
 
     <section class="creer">
         <form>
             <h3>Créer une demande</h3>
-            <p>Décrivez votre problème informatique en quelques étapes.</p>
+            <p class="gray">Décrivez votre problème informatique en quelques étapes.</p>
             <div class="container first">
                 <div class="info">
                     <label>Titre du problème *</label>
@@ -57,10 +57,34 @@
     </section>
 
     <section class="complaints">
+    <div class="frst">
         <div class="lined"><h3>Liste des demandes</h3> <span class="counter">demandes</span></div>
+        <div class="type"><p id="cards"><i class="fa-solid fa-table-cells"></i>Cartes</p> <p id="lines"><i class="fa-solid fa-align-left"></i>tableau</p></div> 
+    </div>
         <div class="list">
-            
         </div>
+        <table class="table">
+    <colgroup>
+        <col style="width: 12.5%">
+        <col style="width: 50%">
+        <col style="width: 12.5%">
+        <col style="width: 12.5%">
+        <col style="width: 12.5%">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>N° Ticket</th>
+            <th>Titre</th>
+            <th>Catégorie</th>
+            <th>Priorité</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+        
     </section>
 
   <script src="js/script.js"></script> 

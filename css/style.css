@@ -7,7 +7,7 @@
   --yellow: #A67A2B;
   --lightgreen: #E8F6EE;
   --lightgreen: #388867;
-  --grayboxbackground: #EDF0F4;
+  --grayboxbackground: #F7F8FA;
   --graytext: #8A95A4;
   --textcolor:#202A38;
   --purplebackground:#F1EAF9;
@@ -36,7 +36,7 @@ header{
     display: none;
 }
 .H{
-    margin-left: 1rem;
+    margin-left: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,20 +52,19 @@ header{
 }
 
 .hero p{
-    margin-left: 1rem;
+    margin-left: 3rem;
     width: fit-content;
     font-size: 11px;
 }
 h1{
-    margin-left: 1rem;
+    margin-left: 3rem;
     width: fit-content;
-    font-size: 16px;
+    font-size: 24px;
 
 }
 form{
     background-color: white;
-    margin-left: 1rem;
-    margin-right: 0.5rem;
+    margin:0 3rem;
     border-radius: 10px;
     padding-bottom: 1rem;
 }
@@ -82,12 +81,18 @@ form p{
     margin-top: 0;
     padding-bottom: 1rem;
 }
+form button{
+    border: none;
+}
 
 .info{
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 0.5rem;
+}
+.gray {
+    color: var(--graytext);
 }
 
 .container{
@@ -101,6 +106,9 @@ input , select , label,button{
     margin-left: 0.5rem;
     padding: 0.5rem;
     margin-right: 0.5rem;
+}
+input , select {
+    border: 0.1px solid rgb(196, 196, 196);
 }
 label{
     padding: 0;
@@ -116,11 +124,11 @@ button{
     display: flex;
     justify-content: start;
     align-items: center;
-    margin-left: 1rem;
 }
 
 .counter{
-    background-color:var(--grayboxbackground);
+    background-color:#EDF0F4;
+    color: #5C697B;
     padding: 0.1rem 0.5rem 0.1rem 0.5rem;
     border-radius: 6px;
     margin-left: auto;
@@ -131,8 +139,7 @@ button{
     display: grid;
     grid-template-columns: 1fr;
     gap: 0.5rem;
-    margin: 0 1rem;
-    margin: 0 1rem;
+    margin: 0 3rem;
 }
 
 .card{
@@ -200,10 +207,77 @@ button{
 
 .modifier{
     color: var(--graytext) !important;
+    padding-right: 15px;
+    
 }
 
 .suprimer{
     color: var(--red) !important;
+}
+
+
+tbody{
+    width: 100%;
+}
+colgroup{
+    width: 100vw;
+}
+.table {
+    
+    margin: 0 3rem;
+    background-color: white;
+    display: none;
+    width: calc(100% - 6rem);
+    border-radius: 12px;
+    table-layout: fixed;
+    
+}
+tr >*{
+    text-align: start;
+    padding-left: 10px;
+}
+.frst{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 3rem;
+}
+
+.type{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-right: 1rem;
+    border-radius: 6px;
+    background-color:#EDF0F4 ;
+    padding: 5px 0.25rem;
+}
+
+#cards{
+    padding: 0.4rem 0.5rem;
+    background-color: white;
+    margin: 0;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    height: fit-content;
+    border-radius: 6px;
+}
+
+#lines{
+    padding: 0.4rem 0.5rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: fit-content;
+    border-radius: 6px;
+}
+
+.table-title{
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 
@@ -368,6 +442,11 @@ button{
         text-decoration: none;
         color: var(--graytext);
     }
+    .counter{
+    
+    border-radius: 6px;
+    margin-left: 3rem;
+}
     
 }
 
