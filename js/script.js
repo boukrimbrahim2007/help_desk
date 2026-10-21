@@ -34,7 +34,6 @@ cards.addEventListener("click",() => {
     cards.style.color="black"
     lines.style.color="#5C697B"
     show=true
-    table.innerHTML=""
     document.querySelector('.table').style.display="none"
     refresh()
 })
@@ -44,11 +43,35 @@ lines.addEventListener("click",() => {
     cards.style.color="#5C697B"
     cards.style.backgroundColor="transparent"
     show=false
-    list.innerHTML=""
     document.querySelector('.table').style.display="block"
     refresh()
 })
+
+
+const submit=document.querySelector('#submit')
+submit.addEventListener("click",function add(e){
+    e.preventDefault();
+    let obj={}
+    const title=document.querySelector('#title')
+    obj.id=data.length
+    obj.titre=title.value
+    const categorie=document.querySelector('#categorie')
+    obj.categorie=categorie.value
+    const priorite=document.querySelector("#priorite")
+    obj.priorite=priorite.value
+    const description=document.querySelector("#description")
+    obj.description=description.value
+    data.push(obj)
+    refresh()
+    
+
+})
+
+
 function refresh(){
+    list.innerHTML=""
+    table.innerHTML=""
+
     if(show){
         for(let i =0 ;i<data.length;i++){
         const card=document.createElement('div')
