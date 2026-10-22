@@ -26,6 +26,9 @@ const lines=document.querySelector("#lines")
 let show=true
 const list=document.querySelector('.list')
 const table=document.querySelector('tbody')
+let holder
+const plus=document.createElement('i')
+plus.classList.add("fa-solid","fa-plus")
 
 
 cards.addEventListener("click",() => {
@@ -49,7 +52,8 @@ lines.addEventListener("click",() => {
 
 
 const submit=document.querySelector('#submit')
-submit.addEventListener("click",function add(e){
+submit.addEventListener("click", add)
+function add(e){
     e.preventDefault();
     let obj={}
     const title=document.querySelector('#title')
@@ -64,9 +68,7 @@ submit.addEventListener("click",function add(e){
     data.push(obj)
     refresh()
     
-
-})
-
+}
 
 function refresh(){
     list.innerHTML=""
@@ -160,9 +162,23 @@ function refresh(){
             button2.style.color="rgba(56, 136, 103, 1)"
         }   
         button2.style.border="none" 
-
-        }
-    }
+        modifier.addEventListener("click", () => {
+            holder=data[i].id
+            let obj=data[searching(holder)]
+            const title=document.querySelector('#title')
+            title.value=obj.titre
+            const categorie=document.querySelector('#categorie')
+            categorie.value=obj.categorie
+            const priorite=document.querySelector("#priorite")
+            priorite.value =obj.priorite
+            const description=document.querySelector("#description")
+            description.value= obj.description
+            submit.textContent="modifier"
+            submit.removeEventListener("click", add)
+            submit.addEventListener("click", modifie)
+        })
+        
+    }}
     else {
         for(let i =0 ;i<data.length;i++){
         const tbody=document.querySelector('tbody')
@@ -240,10 +256,53 @@ function refresh(){
             button2.style.color="rgba(56, 136, 103, 1)"
         }   
         button2.style.border="none" 
-
+        modIcon.addEventListener("click", () => {
+            holder=data[i].id
+            let obj=data[searching(holder)]
+            const title=document.querySelector('#title')
+            title.value=obj.titre
+            const categorie=document.querySelector('#categorie')
+            categorie.value=obj.categorie
+            const priorite=document.querySelector("#priorite")
+            priorite.value =obj.priorite
+            const description=document.querySelector("#description")
+            description.value= obj.description
+            submit.textContent="modifier"
+            submit.removeEventListener("click", add)
+            submit.addEventListener("click", modifie)
+        })
+        }
+            
+    
+}} 
+ refresh()   
+function searching(id){
+    for(let j=0;j<data.length;j++){
+        if(data[j].id==id){
+            return j
         }
     }
-}  
-    
+}
+function modifie(e){
+                e.preventDefault();
+                let object={}
+                const title=document.querySelector('#title')
+                object.id=holder
+                object.titre=title.value
+                const categorie=document.querySelector('#categorie')
+                object.categorie=categorie.value
+                const priorite=document.querySelector("#priorite")
+                object.priorite=priorite.value
+                const description=document.querySelector("#description")
+                object.description=description.value
+                submit.textContent="Ajouter la demande"
+                submit.prepend(plus)
+                data[searching(holder)]=object
+                submit.removeEventListener("click", modifie)
+                submit.addEventListener("click", add)
+                refresh()
+                
+            }
 
-refresh()
+
+
