@@ -111,6 +111,7 @@ function add(e){
         verifie()   
         obj.id=idddddd
         idddddd++;
+        idddddd=1;
     
     data.push(obj)
     save()

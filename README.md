@@ -13,6 +13,10 @@ A small front-end ticket manager for IT support requests, built with plain HTML,
 - Data persists between visits (`localStorage`, key `data`)
 - Responsive layout (mobile, tablet 768–1024px, desktop 1024px+)
 
+## Live demo
+
+https://boukrimbrahim2007.github.io/help_desk/
+
 ## Data model
 
 Each ticket is an object:
