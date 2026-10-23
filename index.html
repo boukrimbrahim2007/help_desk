@@ -4,12 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Help Desk</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
+    <header>
+        <div class="first"><div class="H">H</div>
+        <p class="logo">HelpDesk </p></div>
+        <i class="fa-solid fa-bars menu"></i>
+        <nav class="not_mobile">
+            <a href="#">Atlas Solutions  /  Support</a>
+        </nav>
+    </header>
+    <section class="hero">
+        <h1>Gestion des demandes</h1>
+        <p class="gray">Centralisez les incidents et simplifiez le suivi de votre équipe.</p>
+    </section>
 
+    <section class="creer">
+        <form>
+            <h3>Créer une demande</h3>
+            <p class="gray">Décrivez votre problème informatique en quelques étapes.</p>
+            <div class="container first">
+                <div class="info">
+                    <label>Titre du problème *</label>
+                    <input maxlength="66" type="text" placeholder="Connexion Wi-Fi instable" id="title">
+                </div>
+                <div class="info second">
+                    <label>Catégorie *</label>
+                    <select id="categorie">
+                        <option value="Réseau">Réseau</option>
+                        <option value="Logiciel">Logiciel</option>
+                        <option value="Matériel">Matériel</option>
+                    </select>    
+                </div>
+                <div class="info third">
+                    <label>Priorité*</label>
+                    <select id="priorite">
+                        <option value="Haute">Haute</option>
+                        <option value="Normale">Normale</option>
+                        <option value="Basse">Basse</option>
+                    </select>  
+                </div>
+                    <div class="info fourth">
+                        <label>Description *</label>
+                        <input type="text" maxlength="66" placeholder="Décrivez votre problème..." id="description">
+                    </div>
+                <button id="submit"><i class="fa-solid fa-plus"></i>  Ajouter la demande</button>
+            </div>
 
+        </form>
+    </section>
+
+    <section class="complaints">
+    <div class="frst">
+        <div class="lined"><h3>Liste des demandes</h3> <span class="counter">demandes</span></div>
+        <div class="type"><p id="cards"><i class="fa-solid fa-table-cells"></i>Cartes</p> <p id="lines"><i class="fa-solid fa-align-left"></i>tableau</p></div> 
+    </div>
+        <div class="list">
+        </div>
+        <table class="table">
+    <colgroup>
+        <col style="width: 12.5%">
+        <col style="width: 50%">
+        <col style="width: 12.5%">
+        <col style="width: 12.5%">
+        <col style="width: 12.5%">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>N° Ticket</th>
+            <th>Titre</th>
+            <th>Catégorie</th>
+            <th>Priorité</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+        
+    </section>
 
   <script src="js/script.js"></script> 
 </body>
