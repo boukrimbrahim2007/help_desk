@@ -119,13 +119,17 @@ button{
     color: white;
     
 }
-
+.error_description,.error_title{
+    margin-left: 0.5rem;
+}
 .lined{
     display: flex;
     justify-content: start;
     align-items: center;
 }
-
+.lined h3{
+    margin-right: 0rem;
+}
 .counter{
     background-color:#EDF0F4;
     color: #5C697B;
@@ -133,6 +137,7 @@ button{
     border-radius: 6px;
     margin-left: auto;
     margin-right: 1rem;
+    white-space: nowrap;
 }
 
 .list{
@@ -251,6 +256,7 @@ tr >*{
     border-radius: 6px;
     background-color:#EDF0F4 ;
     padding: 5px 0.25rem;
+    display: none;
 }
 
 #cards{
@@ -280,6 +286,10 @@ tr >*{
     gap: 15px;
 }
 
+#sortcat,#sortprio{
+    padding: 0.1rem 0.5rem;
+    margin: 0;
+}
 
 
 
@@ -397,8 +407,14 @@ tr >*{
         text-decoration: none;
         color: var(--graytext);
     }
+    .type{
+        display: flex;
+    }
 }
 @media (min-width:1024px) {
+    .type{
+        display: flex;
+    }
     .container{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
