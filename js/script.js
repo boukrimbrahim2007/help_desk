@@ -122,12 +122,12 @@ function add(e){
     
 }
 
-function refresh(){
+function refresh(tab=data){
     list.innerHTML=""
     table.innerHTML=""
 
     if(show){
-        for(let i =0 ;i<data.length;i++){
+        for(let i =0 ;i<tab.length;i++){
         const card=document.createElement('div')
         card.classList.add("card")
         const content=document.createElement('div')
@@ -157,16 +157,16 @@ function refresh(){
         supIcon.classList.add("fa-solid","fa-trash-can")
         
         
-        document.querySelector(".counter").textContent=""+data.length+" demandes"
+        document.querySelector(".counter").textContent=""+tab.length+" demandes"
 
 
         
         
-        p.textContent="HD-"+data[i].id
-        title.textContent=data[i].titre
-        p2.textContent=data[i].description
-        button1.textContent=data[i].categorie
-        button2.textContent=data[i].priorite
+        p.textContent="HD-"+tab[i].id
+        title.textContent=tab[i].titre
+        p2.textContent=tab[i].description
+        button1.textContent=tab[i].categorie
+        button2.textContent=tab[i].priorite
         modifier.textContent="modifier"
         suprimer.textContent="suprimer"
 
@@ -215,8 +215,8 @@ function refresh(){
         }   
         button2.style.border="none" 
         modifier.addEventListener("click", () => {
-            holder=data[i].id
-            let obj=data[searching(holder)]
+            holder=tab[i].id
+            let obj=tab[searching(holder)]
             const title=document.querySelector('#title')
             title.value=obj.titre
             const categorie=document.querySelector('#categorie')
@@ -230,7 +230,7 @@ function refresh(){
             submit.addEventListener("click", modifie)
         })
         suprimer.addEventListener("click",()=>{
-            holder=data[i].id
+            holder=tab[i].id
             const autorised=confirm("est ce que tu veux supresser votre ticket ?")
             if(autorised){
             suprime()
@@ -239,7 +239,7 @@ function refresh(){
         
     }}
     else {
-        for(let i =0 ;i<data.length;i++){
+        for(let i =0 ;i<tab.length;i++){
         const tbody=document.querySelector('tbody')
         const tr=document.createElement('tr')
         const tableTitle=document.createElement('div')
@@ -267,17 +267,17 @@ function refresh(){
             return td
         }
 
-        p.textContent="HD-"+data[i].id
+        p.textContent="HD-"+tab[i].id
         tr.appendChild(td(p))
-        title.textContent=data[i].titre
-        des.textContent=data[i].description
+        title.textContent=tab[i].titre
+        des.textContent=tab[i].description
         tableTitle.appendChild(icon)
         div.appendChild(title)
         div.appendChild(des)
         tableTitle.appendChild(div)
         tr.appendChild(td(tableTitle))
-        button1.textContent=data[i].categorie
-        button2.textContent=data[i].priorite
+        button1.textContent=tab[i].categorie
+        button2.textContent=tab[i].priorite
         tr.appendChild(td(button1))
         tr.appendChild(td(button2))
         tbody.appendChild(tr)
@@ -289,6 +289,7 @@ function refresh(){
 
 
 
+        document.querySelector(".counter").textContent=""+tab.length+" demandes"
 
 
         if(button1.textContent=="Matériel"){
@@ -316,8 +317,8 @@ function refresh(){
         }   
         button2.style.border="none" 
         modIcon.addEventListener("click", () => {
-            holder=data[i].id
-            let obj=data[searching(holder)]
+            holder=tab[i].id
+            let obj=tab[searching(holder)]
             const title=document.querySelector('#title')
             title.value=obj.titre
             const categorie=document.querySelector('#categorie')
@@ -332,7 +333,7 @@ function refresh(){
         })
 
         supIcon.addEventListener("click",()=>{
-            holder=data[i].id
+            holder=tab[i].id
             const autorised=confirm("est ce que tu veux supresser votre ticket ?")
             if(autorised){
             suprime()
@@ -400,6 +401,39 @@ function suprime(e){
 
 
 
+const sortprio=document.querySelector('#sortprio')
+sortprio.addEventListener("click",function filtre(){
+    const sorted=[]
+    for(let k=0;k<data.length;k++){
+        sorted.push(data[k])
+    }
+    for(let i=0;i<sorted.length;i++){
+        for(let j=0;j<sorted.length-1;j++){
+            if((sorted[j].priorite=="Basse"&&(sorted[j+1].priorite=="Haute"||sorted[j+1].priorite=="Normale")) || (sorted[j].priorite=="Normale"&&(sorted[j+1].priorite=="Haute"))){
+                [sorted[j],sorted[j+1]]=[sorted[j+1],sorted[j]]
+            }
+            
+        }
+    }
+    refresh(sorted)
+})
 
 
 
+
+const sortcat=document.querySelector('#sortcat')
+sortcat.addEventListener("click",function filtre(){
+    const sorted2=[]
+    for(let k=0;k<data.length;k++){
+        sorted2.push(data[k])
+    }
+    for(let i=0;i<sorted2.length;i++){
+        for(let j=0;j<sorted2.length-1;j++){
+            if((sorted2[j].priorite=="Matériel"&&(sorted2[j+1].priorite=="Réseau"||sorted2[j+1].priorite=="Logiciel")) || (sorted2[j].priorite=="Logiciel"&&(sorted2[j+1].priorite=="Réseau"))){
+                [sorted2[j],sorted2[j+1]]=[sorted2[j+1],sorted2[j]]
+            }
+            
+        }
+    }
+    refresh(sorted2)
+})

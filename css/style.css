@@ -286,6 +286,10 @@ tr >*{
     gap: 15px;
 }
 
+#sortcat,#sortprio{
+    padding: 0.1rem 0.5rem;
+    margin: 0;
+}
 
 
 
