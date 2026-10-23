@@ -1,4 +1,4 @@
-const data= [//ai gave me this list
+const dataDefult= [//ai gave me this list
   {
     id: 1,
     titre: "Écran qui ne s'allume plus",
@@ -21,13 +21,33 @@ const data= [//ai gave me this list
     priorite: "Basse"
   }
 ];
-let idddddd=4
+const data = localStorage.getItem("data") && localStorage.getItem("data") !== "undefined" ? JSON.parse(localStorage.getItem("data")) : dataDefult
+function save(){
+    localStorage.setItem("data",JSON.stringify(data))
+}
+
+let idddddd=1
+function searching(id){
+    for(let j=0;j<data.length;j++){
+        if(data[j].id==id){
+            return j
+        }
+    }
+}
+function verifie(){
+      if( searching(idddddd)!==undefined){
+        idddddd++;
+        return verifie()
+      }
+    
+}
 const cards=document.querySelector("#cards")
 const lines=document.querySelector("#lines")
 let show=true
 const list=document.querySelector('.list')
 const table=document.querySelector('tbody')
 let holder
+const regex=/^[a-zA-Z0-9 éÉè]+$/
 const plus=document.createElement('i')
 plus.classList.add("fa-solid","fa-plus")
 
@@ -57,17 +77,43 @@ submit.addEventListener("click", add)
 function add(e){
     e.preventDefault();
     let obj={}
+    let invalid=false
     const title=document.querySelector('#title')
-    obj.id=idddddd
-    idddddd++;
     obj.titre=title.value
-    const categorie=document.querySelector('#categorie')
-    obj.categorie=categorie.value
-    const priorite=document.querySelector("#priorite")
-    obj.priorite=priorite.value
-    const description=document.querySelector("#description")
-    obj.description=description.value
+    if(!regex.test(obj.titre)){
+        const error=document.querySelector(".error_title")
+        error.textContent="invalid input"
+        error.style.color='red'
+        invalid=true
+    }
+    else{           
+        const error=document.querySelector(".error_title")
+        error.textContent=""}
+        
+        const categorie=document.querySelector('#categorie')
+        obj.categorie=categorie.value
+        const priorite=document.querySelector("#priorite")
+        obj.priorite=priorite.value
+        const description=document.querySelector("#description")
+        obj.description=description.value
+        if(!regex.test(obj.description)){
+            const error2=document.querySelector(".error_description")
+            error2.textContent="invalid input"
+            error2.style.color='red'
+            invalid=true
+        }
+        else{
+            const error2=document.querySelector(".error_description")
+            error2.textContent=""}
+            if(invalid){
+                return
+            }
+        verifie()   
+        obj.id=idddddd
+        idddddd++;
+    
     data.push(obj)
+    save()
     title.value=""
     categorie.value="Réseau"
     priorite.value="Haute"
@@ -184,6 +230,7 @@ function refresh(){
             submit.addEventListener("click", modifie)
         })
         suprimer.addEventListener("click",()=>{
+            holder=data[i].id
             const autorised=confirm("est ce que tu veux supresser votre ticket ?")
             if(autorised){
             suprime()
@@ -296,25 +343,41 @@ function refresh(){
     
 }} 
  refresh()   
-function searching(id){
-    for(let j=0;j<data.length;j++){
-        if(data[j].id==id){
-            return j
-        }
-    }
-}
+
 function modifie(e){
                 e.preventDefault();
                 let object={}
+                let invalid=false
                 const title=document.querySelector('#title')
                 object.id=holder
                 object.titre=title.value
+                if(!regex.test(object.titre)){
+                    const error=document.querySelector(".error_title")
+                    error.textContent="invalid input"
+                    error.style.color='red'
+                    invalid=true
+                }
+                else{           
+                    const error=document.querySelector(".error_title")
+                    error.textContent=""}
                 const categorie=document.querySelector('#categorie')
                 object.categorie=categorie.value
                 const priorite=document.querySelector("#priorite")
                 object.priorite=priorite.value
                 const description=document.querySelector("#description")
                 object.description=description.value
+                if(!regex.test(object.description)){
+                    const error2=document.querySelector(".error_description")
+                    error2.textContent="invalid input"
+                    error2.style.color='red'
+                    invalid=true
+                }
+                else{
+                    const error2=document.querySelector(".error_description")
+                    error2.textContent=""}
+                if(invalid){
+                        return
+                }
                 submit.textContent="Ajouter la demande"
                 submit.prepend(plus)
                 data[searching(holder)]=object
@@ -325,11 +388,18 @@ function modifie(e){
                 categorie.value="Réseau"
                 priorite.value="Haute"
                 description.value=""
+                save()
                 
 }
 
 function suprime(e){
     data.splice(searching(holder),1)
     refresh()
+    save()
 }
+
+
+
+
+
 
