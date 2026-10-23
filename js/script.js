@@ -16,11 +16,12 @@ const data= [//ai gave me this list
   {
     id: 3,
     titre: "Wi-Fi instable en salle de réunion",
-    description: "La connexion Wi-Fi se coupe régulièrement pendant les visioconférences.",
+    description: "La connexion Wi-Fi se coupe toujours pendant les visioconférences.",
     categorie: "Réseau",
     priorite: "Basse"
   }
 ];
+let idddddd=4
 const cards=document.querySelector("#cards")
 const lines=document.querySelector("#lines")
 let show=true
@@ -57,7 +58,8 @@ function add(e){
     e.preventDefault();
     let obj={}
     const title=document.querySelector('#title')
-    obj.id=data.length
+    obj.id=idddddd
+    idddddd++;
     obj.titre=title.value
     const categorie=document.querySelector('#categorie')
     obj.categorie=categorie.value
@@ -66,6 +68,10 @@ function add(e){
     const description=document.querySelector("#description")
     obj.description=description.value
     data.push(obj)
+    title.value=""
+    categorie.value="Réseau"
+    priorite.value="Haute"
+    description.value=""
     refresh()
     
 }
@@ -177,6 +183,12 @@ function refresh(){
             submit.removeEventListener("click", add)
             submit.addEventListener("click", modifie)
         })
+        suprimer.addEventListener("click",()=>{
+            const autorised=confirm("est ce que tu veux supresser votre ticket ?")
+            if(autorised){
+            suprime()
+            }
+        })
         
     }}
     else {
@@ -271,6 +283,14 @@ function refresh(){
             submit.removeEventListener("click", add)
             submit.addEventListener("click", modifie)
         })
+
+        supIcon.addEventListener("click",()=>{
+            holder=data[i].id
+            const autorised=confirm("est ce que tu veux supresser votre ticket ?")
+            if(autorised){
+            suprime()
+            }
+        })
         }
             
     
@@ -301,8 +321,15 @@ function modifie(e){
                 submit.removeEventListener("click", modifie)
                 submit.addEventListener("click", add)
                 refresh()
+                title.value=""
+                categorie.value="Réseau"
+                priorite.value="Haute"
+                description.value=""
                 
-            }
+}
 
-
+function suprime(e){
+    data.splice(searching(holder),1)
+    refresh()
+}
 
