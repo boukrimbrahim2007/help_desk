@@ -16,16 +16,20 @@ const data= [//ai gave me this list
   {
     id: 3,
     titre: "Wi-Fi instable en salle de réunion",
-    description: "La connexion Wi-Fi se coupe régulièrement pendant les visioconférences.",
+    description: "La connexion Wi-Fi se coupe toujours pendant les visioconférences.",
     categorie: "Réseau",
     priorite: "Basse"
   }
 ];
+let idddddd=4
 const cards=document.querySelector("#cards")
 const lines=document.querySelector("#lines")
 let show=true
 const list=document.querySelector('.list')
 const table=document.querySelector('tbody')
+let holder
+const plus=document.createElement('i')
+plus.classList.add("fa-solid","fa-plus")
 
 
 cards.addEventListener("click",() => {
@@ -49,11 +53,13 @@ lines.addEventListener("click",() => {
 
 
 const submit=document.querySelector('#submit')
-submit.addEventListener("click",function add(e){
+submit.addEventListener("click", add)
+function add(e){
     e.preventDefault();
     let obj={}
     const title=document.querySelector('#title')
-    obj.id=data.length
+    obj.id=idddddd
+    idddddd++;
     obj.titre=title.value
     const categorie=document.querySelector('#categorie')
     obj.categorie=categorie.value
@@ -62,11 +68,13 @@ submit.addEventListener("click",function add(e){
     const description=document.querySelector("#description")
     obj.description=description.value
     data.push(obj)
+    title.value=""
+    categorie.value="Réseau"
+    priorite.value="Haute"
+    description.value=""
     refresh()
     
-
-})
-
+}
 
 function refresh(){
     list.innerHTML=""
@@ -160,9 +168,29 @@ function refresh(){
             button2.style.color="rgba(56, 136, 103, 1)"
         }   
         button2.style.border="none" 
-
-        }
-    }
+        modifier.addEventListener("click", () => {
+            holder=data[i].id
+            let obj=data[searching(holder)]
+            const title=document.querySelector('#title')
+            title.value=obj.titre
+            const categorie=document.querySelector('#categorie')
+            categorie.value=obj.categorie
+            const priorite=document.querySelector("#priorite")
+            priorite.value =obj.priorite
+            const description=document.querySelector("#description")
+            description.value= obj.description
+            submit.textContent="modifier"
+            submit.removeEventListener("click", add)
+            submit.addEventListener("click", modifie)
+        })
+        suprimer.addEventListener("click",()=>{
+            const autorised=confirm("est ce que tu veux supresser votre ticket ?")
+            if(autorised){
+            suprime()
+            }
+        })
+        
+    }}
     else {
         for(let i =0 ;i<data.length;i++){
         const tbody=document.querySelector('tbody')
@@ -240,10 +268,68 @@ function refresh(){
             button2.style.color="rgba(56, 136, 103, 1)"
         }   
         button2.style.border="none" 
+        modIcon.addEventListener("click", () => {
+            holder=data[i].id
+            let obj=data[searching(holder)]
+            const title=document.querySelector('#title')
+            title.value=obj.titre
+            const categorie=document.querySelector('#categorie')
+            categorie.value=obj.categorie
+            const priorite=document.querySelector("#priorite")
+            priorite.value =obj.priorite
+            const description=document.querySelector("#description")
+            description.value= obj.description
+            submit.textContent="modifier"
+            submit.removeEventListener("click", add)
+            submit.addEventListener("click", modifie)
+        })
 
+        supIcon.addEventListener("click",()=>{
+            holder=data[i].id
+            const autorised=confirm("est ce que tu veux supresser votre ticket ?")
+            if(autorised){
+            suprime()
+            }
+        })
+        }
+            
+    
+}} 
+ refresh()   
+function searching(id){
+    for(let j=0;j<data.length;j++){
+        if(data[j].id==id){
+            return j
         }
     }
-}  
-    
+}
+function modifie(e){
+                e.preventDefault();
+                let object={}
+                const title=document.querySelector('#title')
+                object.id=holder
+                object.titre=title.value
+                const categorie=document.querySelector('#categorie')
+                object.categorie=categorie.value
+                const priorite=document.querySelector("#priorite")
+                object.priorite=priorite.value
+                const description=document.querySelector("#description")
+                object.description=description.value
+                submit.textContent="Ajouter la demande"
+                submit.prepend(plus)
+                data[searching(holder)]=object
+                submit.removeEventListener("click", modifie)
+                submit.addEventListener("click", add)
+                refresh()
+                title.value=""
+                categorie.value="Réseau"
+                priorite.value="Haute"
+                description.value=""
+                
+}
 
-refresh()
+function suprime(e){
+    data.splice(searching(holder),1)
+    refresh()
+}
+
