@@ -29,6 +29,7 @@
                 <div class="info">
                     <label>Titre du problème *</label>
                     <input maxlength="66" type="text" placeholder="Connexion Wi-Fi instable" id="title">
+                    <div class="error_title"></div>
                 </div>
                 <div class="info second">
                     <label>Catégorie *</label>
@@ -49,6 +50,7 @@
                     <div class="info fourth">
                         <label>Description *</label>
                         <input type="text" maxlength="66" placeholder="Décrivez votre problème..." id="description">
+                        <div class="error_description"></div>
                     </div>
                 <button id="submit"><i class="fa-solid fa-plus"></i>  Ajouter la demande</button>
             </div>
@@ -59,7 +61,7 @@
     <section class="complaints">
     <div class="frst">
         <div class="lined"><h3>Liste des demandes</h3> <span class="counter">demandes</span></div>
-        <div class="type"><p id="cards"><i class="fa-solid fa-table-cells"></i>Cartes</p> <p id="lines"><i class="fa-solid fa-align-left"></i>tableau</p></div> 
+        <div class="type"><p id="sortcat">catego</p><p id="sortprio">prio</p><p id="cards"><i class="fa-solid fa-table-cells"></i>Cartes</p> <p id="lines"><i class="fa-solid fa-align-left"></i>tableau</p></div> 
     </div>
         <div class="list">
         </div>
