@@ -430,10 +430,9 @@ sortcat.addEventListener("click",function filtre(){
     }
     for(let i=0;i<sorted2.length;i++){
         for(let j=0;j<sorted2.length-1;j++){
-            if((sorted2[j].priorite=="Matériel"&&(sorted2[j+1].priorite=="Réseau"||sorted2[j+1].priorite=="Logiciel")) || (sorted2[j].priorite=="Logiciel"&&(sorted2[j+1].priorite=="Réseau"))){
+            if((sorted2[j].categorie=="Matériel"&&(sorted2[j+1].categorie=="Réseau"||sorted2[j+1].categorie=="Logiciel")) || (sorted2[j].categorie=="Logiciel"&&(sorted2[j+1].categorie=="Réseau"))){
                 [sorted2[j],sorted2[j+1]]=[sorted2[j+1],sorted2[j]]
             }
-            
         }
     }
     refresh(sorted2)
